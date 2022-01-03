@@ -9,14 +9,20 @@ const app = express();
 //product Schema
 const ProductSchema =new mongoose.Schema({
     prod_name :{type:String,required:true},
-    price:{type:Number,required:true},
-    color:{type:String,required:true}
+    color:{type:String,required:true},
+    price:{type:Number,required:true}
+   
 },{
     versionKey:false,
     timestamps:true
 });
 
 const Product = mongoose.model("product",ProductSchema)
+
+app.post("products",async(res,req)=>{
+    const product = await Product.create(req.body);
+    return res.send(product);
+})
 
 app.get("/products",async(req,res)=>{
     const products = await Product.find().lean().exac();
