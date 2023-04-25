@@ -48,16 +48,6 @@ app.get("/products",async(req,res)=>{
 })
 
 
-
-
-
-
-
-
-
-
-
-
 app.listen(2345,async()=>{
     await connect()
     console.log("connecting to server 2345")
